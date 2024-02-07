@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "huffify"
+version = "0.1.0"
+description = ""
+authors = ["munwriter <glebvysokov3@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+setuptools = "^69.0.3"
+wheel = "^0.42.0"
+twine = "^4.0.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.12.1"
+mypy = "^1.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
