@@ -13,12 +13,10 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x' # specify the Python version you want to use
+        python-version: '3.12'
 
-    - name: Install Poetry
-      run: |
-        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-        source $HOME/.poetry/env
+    - name: Install Poetry Action
+      uses: snok/install-poetry@v1.3.4
     
     - name: Lock dependencies
       run: poetry lock
@@ -27,4 +25,4 @@ jobs:
       run: poetry install
 
     - name: Make
-      run: make lint
+      run: make --keep-going format lint
