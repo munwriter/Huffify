@@ -23,9 +23,7 @@ class HuffmanCodec:
     def print_encoding_table(self, message: str) -> None:
         # TODO add sys.stout
         encoding_table = self._get_encoding_table(message)
-        encoding_table = dict(
-            sorted(encoding_table.items(), key=lambda x: (len(x[1]), x[1]))
-        )
+        encoding_table = dict(sorted(encoding_table.items(), key=lambda x: (len(x[1]), x[1])))
         [print(_) for _ in self._format(encoding_table)]
 
     def _format(self, encoding_table: dict[str, str]) -> list[str]:

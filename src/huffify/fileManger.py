@@ -1,8 +1,7 @@
 import pickle
 
-from huffify.annotations import FinalDataSet
-
 from huffify.abstract import PersistenceManager
+from huffify.annotations import FinalDataSet
 
 
 class Pickelifier(PersistenceManager):

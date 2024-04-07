@@ -29,9 +29,7 @@ class MVPEncoder(IEncoder):
         encoded_message = self._make_bytes_partition(bytes_string)
         return encoded_message
 
-    def decode_string(
-        self, encoding_table: dict[str, str], encoded_message: bytearray
-    ) -> str:
+    def decode_string(self, encoding_table: dict[str, str], encoded_message: bytearray) -> str:
         encoding_table = {code: char for char, code in encoding_table.items()}
         bytes_container: list[str] = []
         for byte in encoded_message:
