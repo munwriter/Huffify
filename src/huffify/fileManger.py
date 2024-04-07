@@ -1,6 +1,6 @@
 import pickle
 
-from huffify.annotations import EncodedData
+from huffify.annotations import FinalDataSet
 
 from huffify.abstract import PersistenceManager
 
@@ -16,11 +16,11 @@ class Pickelifier(PersistenceManager):
         self.output_path = output_path
         self.encoding = encoding
 
-    def save(self, encoded_data: EncodedData) -> None:
+    def save(self, encoded_data: FinalDataSet) -> None:
         with open(self.output_path, "wb", encoding=self.encoding) as f:
             pickle.dump(encoded_data, f)
 
-    def load(self) -> EncodedData:
+    def load(self) -> FinalDataSet:
         with open(self.output_path, "rb", encoding=self.encoding) as f:
-            data: EncodedData = pickle.load(f)
+            data: FinalDataSet = pickle.load(f)
         return data

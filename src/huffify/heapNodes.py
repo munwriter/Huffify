@@ -1,13 +1,9 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from huffify.abstract import INode
 
 
-@dataclass
-class Node:
-    char: str
-    freq: int
-
+class Node(INode):
     def __add__(self, other: Node) -> Node:
         char = self.char + other.char
         freq = self.freq + other.freq
@@ -17,8 +13,7 @@ class Node:
         return self.freq > other.freq
 
 
-@dataclass
-class LexicographicNode(Node):
+class LexicographicNode(INode):
     def __add__(self, other: LexicographicNode) -> LexicographicNode:
         freq = self.freq + other.freq
         if self.char < other.char:
