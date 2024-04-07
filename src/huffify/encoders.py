@@ -9,20 +9,20 @@ class MVPEncoder(IEncoder):
         return bytes_string
 
     def _make_bytes_partition(self, bytes_string: str) -> bytearray:
-        # additional_bits = len(bytes_string) % 8
-        # if len(bytes_string) == 8:
-        #     return bytearray((int(bytes_string, 2),))
-        # elif len(bytes_string) == 0:
-        #     return bytearray()
-        # else:
-        #     additional_bits = 8 - additional_bits
-        # bytes_string += additional_bits * "0"
-        # bytes_message = [
-        #     bytes_string[i : i + 8] for i in range(0, len(bytes_string), 8)
-        # ]
-        # bytes_message[-1] = bytes_message[-1][:-additional_bits]
-        # return bytearray(map(lambda x: int(x, 2), bytes_message))
-        ...
+        if not bytes_string:
+            return bytearray()
+        elif len(bytes_string) <= 8:
+            byte = (int(bytes_string, 2),)
+            return bytearray(byte)
+        additional_len = len(bytes_string) % 8
+        required_len = len(bytes_string) - additional_len
+        encoded_stream = []
+        for i in range(0, required_len, 8):
+            encoded_stream.append(bytes_string[i : i + 8])
+        if additional_len:
+            encoded_stream.append(bytes_string[-additional_len:])
+        print(encoded_stream)
+        return bytearray(map(lambda x: int(x, 2), encoded_stream))
 
     def encode_string(self, encoding_table: dict[str, str], message: str) -> bytearray:
         bytes_string = self._build_bytes_string_from_table(encoding_table, message)
