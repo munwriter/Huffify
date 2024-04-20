@@ -43,3 +43,4 @@ show-fixes = true
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 exclude = "/tests"
+include = "/src"
