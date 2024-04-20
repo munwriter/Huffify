@@ -1,6 +1,8 @@
-name: Linting and testing
+name: Deploying to PyPi
 
-on: [push]
+on:
+    release:
+        types: [created]
 
 jobs:
   lint:
@@ -50,3 +52,28 @@ jobs:
 
     - name: Make
       run: make --keep-going tests
+  
+  deploy:
+
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install Poetry Action
+      uses: snok/install-poetry@v1.3.4
+    
+    - name: Lock dependencies
+      run: poetry lock
+
+    - name: Install dependencies
+      run: poetry install
+
+    - name: Deploy to PyPi
+      run: poetry publish --build --username ${{secrets.PYPI_USERNAME}} --password ${{secrets.PYPI_PASSWORD}}
