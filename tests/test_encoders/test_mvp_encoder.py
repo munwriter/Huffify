@@ -11,9 +11,9 @@ def mvp_encoder():
 @pytest.mark.parametrize(
     "origin_string, expectation",
     [
-        ("", bytearray()),
-        ("1011", bytearray((int("1011", 2),))),
-        ("11110001", bytearray((int("11110001", 2),))),
+        ("", bytearray((0,))),
+        ("1011", bytearray((4, int("1011", 2)))),
+        ("11110001", bytearray((0, int("11110001", 2)))),
     ],
 )
 def test_encoder_partition(
