@@ -35,6 +35,8 @@ class HuffmanCodec:
         return lines
 
     def _get_encoding_table(self, message: str) -> dict[str, str]:
+        if len(message) == 1:
+            return {char: "1" for char in message}
         chars_frequency = self._define_char_frequency(message)
         heap = [self.__HeapNode(key, chars_frequency[key]) for key in chars_frequency]
         heapq.heapify(heap)
