@@ -18,6 +18,10 @@ format:
 tests:
 	@poetry run pytest
 
+.PHONY: coverage
+coverage:
+	@poetry run pytest --cov=./src ./tests
+
 # Lint + format + stattic analyzer + tests
 .PHONY: prepare
 prepare: format lint tests
