@@ -22,6 +22,6 @@ tests:
 coverage:
 	@poetry run pytest --cov=./src ./tests
 
-# Lint + format + stattic analyzer + tests
+# Lint + format + static analyzer + tests
 .PHONY: prepare
 prepare: format lint tests

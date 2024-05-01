@@ -1,10 +1,12 @@
 import heapq
 from collections import Counter
+from pathlib import Path
 from typing import Type
 
-from huffify.abstract import IEncoder, INode
+from huffify.abstract import IEncoder, INode, IPersistenceManager
 from huffify.annotations import FinalDataSet
 from huffify.encoders import MVPEncoder
+from huffify.fileManger import Picklefier
 from huffify.heapNodes import Node
 
 
@@ -17,16 +19,20 @@ class HuffmanCodec:
         self.__HeapNode = node
         self.encoder: IEncoder = encoder()
 
-    def _define_char_frequency(self, message: str) -> Counter[str]:
+    @staticmethod
+    def __define_char_frequency(message: str) -> Counter[str]:
         return Counter(message)
 
-    def print_encoding_table(self, message: str) -> None:
+    def print_encoding_table(self, message: str, reverse: bool = False) -> None:
         # TODO add sys.stout
         encoding_table = self._get_encoding_table(message)
-        encoding_table = dict(sorted(encoding_table.items(), key=lambda x: (len(x[1]), x[1])))
-        [print(_) for _ in self._format(encoding_table)]
+        encoding_table = dict(
+            sorted(encoding_table.items(), key=lambda x: (len(x[1]), x[1]), reverse=reverse)
+        )
+        [print(_) for _ in HuffmanCodec.__format(encoding_table)]
 
-    def _format(self, encoding_table: dict[str, str]) -> list[str]:
+    @staticmethod
+    def __format(encoding_table: dict[str, str]) -> list[str]:
         if not encoding_table:
             return []
         lines: list[str] = []
@@ -37,7 +43,7 @@ class HuffmanCodec:
     def _get_encoding_table(self, message: str) -> dict[str, str]:
         if len(message) == 1:
             return {char: "1" for char in message}
-        chars_frequency = self._define_char_frequency(message)
+        chars_frequency = HuffmanCodec.__define_char_frequency(message)
         heap = [self.__HeapNode(key, chars_frequency[key]) for key in chars_frequency]
         heapq.heapify(heap)
         encoding_table = {char: "" for char in message}
@@ -67,4 +73,24 @@ class HuffmanCodec:
             "message"
         )
         decoded_message = self.encoder.decode_string(encoding_table, encoded_message)
+        return decoded_message
+
+
+class Huffify(HuffmanCodec):
+    def __init__(
+        self,
+        node: Type[INode] = Node,
+        encoder: Type[IEncoder] = MVPEncoder,
+        file_manager: Type[IPersistenceManager] = Picklefier,
+    ) -> None:
+        super().__init__(node, encoder)
+        self.file_manager: IPersistenceManager = file_manager()
+
+    def save(self, path: str | Path, message: str) -> None:
+        encoded_dataset = self.encode(message)
+        self.file_manager.save(path, encoded_dataset)
+
+    def load(self, path: str | Path) -> str:
+        encoded_dataset = self.file_manager.load(path)
+        decoded_message = self.decode(encoded_dataset)
         return decoded_message

@@ -2,13 +2,15 @@ from abc import ABCMeta, abstractmethod
 from dataclasses import dataclass
 
 
-class PersistenceManager(metaclass=ABCMeta):
+class IPersistenceManager(metaclass=ABCMeta):
+    @staticmethod
     @abstractmethod
-    def save(self, data):
+    def save(path, encoded_data):
         pass
 
+    @staticmethod
     @abstractmethod
-    def load(self):
+    def load(path):
         pass
 
 

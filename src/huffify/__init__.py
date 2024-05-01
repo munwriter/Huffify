@@ -1,3 +1,3 @@
-from huffify.huffify import HuffmanCodec
+from huffify.huffify import Huffify, HuffmanCodec
 
-__all__ = HuffmanCodec
+__all__ = (HuffmanCodec, Huffify)  # type: ignore
