@@ -1,5 +1,6 @@
 import pytest
 
+from huffify.heapNodes import LexicographicNode
 from huffify.huffify import HuffmanCodec
 
 medium_length_dataset = (
@@ -47,6 +48,11 @@ def vanilla_huffman():
     return HuffmanCodec()
 
 
+@pytest.fixture()
+def lexicographic_huffman():
+    return HuffmanCodec(node=LexicographicNode)
+
+
 @pytest.mark.parametrize("medium_len_word", medium_length_dataset)
 def test_huffman_medium_len_words(vanilla_huffman: HuffmanCodec, medium_len_word: str):
     encoded_data = vanilla_huffman.encode(medium_len_word)
@@ -74,3 +80,15 @@ def test_huffman_medium_texts(vanilla_huffman: HuffmanCodec, text: str):
 def test_huffman_empty_word(vanilla_huffman: HuffmanCodec):
     encoded_data = vanilla_huffman.encode("")
     assert "" == vanilla_huffman.decode(encoded_data)
+
+
+@pytest.mark.parametrize("text", medium_texts_dataset)
+def test_lexicographic_huffman_medium_texts(lexicographic_huffman: HuffmanCodec, text: str):
+    encoded_data = lexicographic_huffman.encode(text)
+    assert text == lexicographic_huffman.decode(encoded_data)
+
+
+@pytest.mark.parametrize("text", symbols_dataset)
+def test_lexicographic_huffman_symbols(lexicographic_huffman: HuffmanCodec, text: str):
+    encoded_data = lexicographic_huffman.encode(text)
+    assert text == lexicographic_huffman.decode(encoded_data)
