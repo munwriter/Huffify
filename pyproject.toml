@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "huffify"
-version = "0.1.1"
+version = "0.2.0"
 description = "Simple Huffman algotithm implementation"
 authors = ["munwriter <glebvysokov3@gmail.com>"]
 keywords = ["huffman", "compression", "encoding", "decoding"]
