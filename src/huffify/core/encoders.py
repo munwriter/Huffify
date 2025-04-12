@@ -1,4 +1,4 @@
-from huffify.abstract import IEncoder
+from huffify.core.abstract import IEncoder
 
 
 class MVPEncoder(IEncoder):

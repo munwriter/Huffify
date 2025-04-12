@@ -3,11 +3,11 @@ from collections import Counter
 from pathlib import Path
 from typing import Type
 
-from huffify.abstract import IEncoder, INode, IPersistenceManager
-from huffify.annotations import FinalDataSet
-from huffify.encoders import MVPEncoder
-from huffify.file_manager import Picklefier
-from huffify.heap_nodes import Node
+from huffify.core.abstract import IEncoder, INode, IPersistenceManager
+from huffify.core.annotations import FinalDataSet
+from huffify.core.encoders import MVPEncoder
+from huffify.core.file_manager import Picklefier
+from huffify.core.heap_nodes import Node
 
 
 class HuffmanCodec:
