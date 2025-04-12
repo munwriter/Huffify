@@ -16,7 +16,7 @@ class IPersistenceManager(metaclass=ABCMeta):
 
 @dataclass
 class INode(metaclass=ABCMeta):
-    char:str
+    char: str
     freq: int
 
     @abstractmethod
