@@ -1,6 +1,6 @@
 import pytest
 
-from huffify.heapNodes import LexicographicNode
+from huffify.heap_nodes import LexicographicNode
 from huffify.huffify import HuffmanCodec
 
 medium_length_dataset = (

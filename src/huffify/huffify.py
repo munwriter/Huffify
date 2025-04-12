@@ -6,8 +6,8 @@ from typing import Type
 from huffify.abstract import IEncoder, INode, IPersistenceManager
 from huffify.annotations import FinalDataSet
 from huffify.encoders import MVPEncoder
-from huffify.fileManger import Picklefier
-from huffify.heapNodes import Node
+from huffify.file_manger import Picklefier
+from huffify.heap_nodes import Node
 
 
 class HuffmanCodec:
