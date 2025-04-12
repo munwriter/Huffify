@@ -25,7 +25,7 @@ jobs:
       run: poetry install
 
     - name: Make
-      run: make --keep-going format lint
+      run: make --keep-going check-all
 
   test:
     needs: lint
