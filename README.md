@@ -17,7 +17,7 @@ from huffify.heapNodes import Node, LexicographicNode
 from huffify.encoders import MVPEncoder
 
 # You can use LexicographicNode that provide idempotent result and another encoder.
-# Now this node and encoder set as default attributes 
+# Now this node and encoder set as default attributes
 codec = HuffmanCodec(node=Node, encoder=MVPEncoder)
 message = "The sun shines bright today."
 

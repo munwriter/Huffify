@@ -41,3 +41,9 @@ prepare: format lint tests
 # Check formatting and linting without modifications
 .PHONY: check-all
 check-all: format-check lint-check
+
+# Setup pre-commit hooks
+.PHONY: setup-pre-commit
+setup-pre-commit:
+	@poetry run pre-commit install
+	@poetry run pre-commit autoupdate
