@@ -13,11 +13,11 @@ Huffify allows you to compress text using Huffman algorithm. Huffify focus on fl
 Basic usage
 ```python
 from huffify import HuffmanCodec
-from huffify.heapNodes import Node, LexicographicNode
+from huffify.heap_nodes import Node, LexicographicNode
 from huffify.encoders import MVPEncoder
 
 # You can use LexicographicNode that provide idempotent result and another encoder.
-# Now this node and encoder set as default attributes 
+# Now this node and encoder set as default attributes
 codec = HuffmanCodec(node=Node, encoder=MVPEncoder)
 message = "The sun shines bright today."
 
@@ -30,7 +30,7 @@ decoded_message = codec.decode(encoded_message)
 Advanced usage
 ```python
 from huffify import Huffify
-from huffify.fileManager import Picklefier
+from huffify.file_manager import Picklefier
 
 # You can pass preferred writing into file strategy
 # It's only one yet and it thrown into Huffify as default strategy
@@ -67,3 +67,16 @@ Using poetry
 ```
 poetry add huffify
 ```
+
+## Contributing
+
+We welcome contributions to Huffify! If you're interested in contributing, please check out our [Contributing Guide](CONTRIBUTING.md) for detailed instructions on:
+
+- Setting up your development environment
+- Project structure
+- Development tools and commands
+- How to add new components
+- Contributing process
+- Release process
+
+For questions or issues, please check our issue tracker or reach out via email.

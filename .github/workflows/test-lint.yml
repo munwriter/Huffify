@@ -17,7 +17,7 @@ jobs:
 
     - name: Install Poetry Action
       uses: snok/install-poetry@v1.3.4
-    
+
     - name: Lock dependencies
       run: poetry lock
 
@@ -25,7 +25,7 @@ jobs:
       run: poetry install
 
     - name: Make
-      run: make --keep-going format lint
+      run: make --keep-going check-all
 
   test:
     needs: lint
@@ -41,7 +41,7 @@ jobs:
 
     - name: Install Poetry Action
       uses: snok/install-poetry@v1.3.4
-    
+
     - name: Lock dependencies
       run: poetry lock
 

@@ -19,7 +19,7 @@ jobs:
 
     - name: Install Poetry Action
       uses: snok/install-poetry@v1.3.4
-    
+
     - name: Lock dependencies
       run: poetry lock
 
@@ -43,7 +43,7 @@ jobs:
 
     - name: Install Poetry Action
       uses: snok/install-poetry@v1.3.4
-    
+
     - name: Lock dependencies
       run: poetry lock
 
@@ -52,7 +52,7 @@ jobs:
 
     - name: Make
       run: make --keep-going tests
-  
+
   deploy:
 
     needs: test
@@ -68,7 +68,7 @@ jobs:
 
     - name: Install Poetry Action
       uses: snok/install-poetry@v1.3.4
-    
+
     - name: Lock dependencies
       run: poetry lock
 
