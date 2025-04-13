@@ -56,8 +56,8 @@ The CLI commands in detail:
     - Basic: `huffify compress <input_file> [output_dir]`
     - With custom filename: `huffify compress <input_file> [output_dir] --filename=<name>`
   - Examples:
-    - `huffify compress input.txt` → Creates `input_a1b2c3d4.huf`
-    - `huffify compress input.txt --filename=custom` → Creates `custom.huf`
+    - `huffify compress input.txt .`  → Creates `input_a1b2c3d4.huf`
+    - `huffify compress input.txt . -filename=custom` → Creates `custom.huf`
     - `huffify compress input.txt /output/dir` → Creates `/output/dir/input_a1b2c3d4.huf`
 
 - `decompress`: Decompresses a previously compressed file
