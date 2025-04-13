@@ -16,7 +16,7 @@ class HuffmanCodec:
         node: Type[INode] = Node,
         encoder: Type[IEncoder] = MVPEncoder,
     ) -> None:
-        self.__HeapNode = node
+        self.__heap_node = node
         self.encoder: IEncoder = encoder()
 
     @staticmethod
@@ -44,7 +44,7 @@ class HuffmanCodec:
         if len(message) == 1:
             return {char: "1" for char in message}
         chars_frequency = HuffmanCodec.__define_char_frequency(message)
-        heap = [self.__HeapNode(key, chars_frequency[key]) for key in chars_frequency]
+        heap = [self.__heap_node(key, chars_frequency[key]) for key in chars_frequency]
         heapq.heapify(heap)
         encoding_table = {char: "" for char in message}
         while len(heap) > 1:

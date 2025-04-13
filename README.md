@@ -28,10 +28,16 @@ poetry add huffify
 Huffify provides a convenient command-line interface for common operations:
 
 ```bash
-# Compress a file
-huffify compress input.txt compressed.huf
+# Compress a file (auto-generates filename: input_a1b2c3d4.huf)
+huffify compress input.txt
 
-# Decompress a file
+# Compress with custom filename (outputs: custom_name.huf)
+huffify compress input.txt --filename=custom_name
+
+# Compress to specific directory
+huffify compress input.txt /path/to/output/dir
+
+# Decompress a file (must have .huf extension)
 huffify decompress compressed.huf output.txt
 
 # View encoding table for a text
@@ -40,6 +46,28 @@ huffify table "Hello, World!"
 # Run benchmarks
 huffify benchmark
 ```
+
+The CLI commands in detail:
+
+- `compress`: Compresses a text file using Huffman coding
+  - Automatically generates .huf files with unique identifiers
+  - Shows compression statistics including original size, compressed size, and compression ratio
+  - Usage:
+    - Basic: `huffify compress <input_file> [output_dir]`
+    - With custom filename: `huffify compress <input_file> [output_dir] --filename=<name>`
+  - Examples:
+    - `huffify compress input.txt` → Creates `input_a1b2c3d4.huf`
+    - `huffify compress input.txt --filename=custom` → Creates `custom.huf`
+    - `huffify compress input.txt /output/dir` → Creates `/output/dir/input_a1b2c3d4.huf`
+
+- `decompress`: Decompresses a previously compressed file
+  - Only accepts files with .huf extension
+  - Restores the original text content
+  - Usage: `huffify decompress <compressed_file.huf> <output_file>`
+
+- `table`: Displays the Huffman encoding table for a given text
+  - Shows character-to-code mappings used in compression
+  - Usage: `huffify table "<text>"`
 
 ### Python API
 
