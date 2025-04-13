@@ -1,3 +1,5 @@
-from huffify.huffify import Huffify, HuffmanCodec
+"""Huffify - Huffman compression library."""
 
-__all__ = (HuffmanCodec, Huffify)  # type: ignore
+from huffify.core.huffify import Huffify, HuffmanCodec
+
+__all__ = ["Huffify", "HuffmanCodec"]

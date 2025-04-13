@@ -1,6 +1,6 @@
 import pytest
 
-from huffify.encoders import MVPEncoder
+from huffify.core.encoders import MVPEncoder
 
 
 @pytest.fixture()

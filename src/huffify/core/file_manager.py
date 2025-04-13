@@ -1,8 +1,8 @@
 import pickle
 from pathlib import Path
 
-from huffify.abstract import IPersistenceManager
-from huffify.annotations import FinalDataSet
+from huffify.core.abstract import IPersistenceManager
+from huffify.core.annotations import FinalDataSet
 
 
 class PickleFileManager:

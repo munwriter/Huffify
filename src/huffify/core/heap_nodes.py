@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from huffify.abstract import INode
+from huffify.core.abstract import INode
 
 
 class Node(INode):
